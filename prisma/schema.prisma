@@ -1,0 +1,34 @@
+datasource db {
+  provider = "mysql"
+  url = "mysql://admin:Eb1iasm!*ECLdWnSPP2M@database-1.cw3kojcdyju8.eu-west-2.rds.amazonaws.com:3306/mydb"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Chatroom {
+  id Int @default(autoincrement()) @id
+  name String
+  owner User @relation(name: "owner", fields: [ownerId], references: [id])
+  ownerId Int
+  messages Message[]
+  users User[]
+}
+
+model User {
+  id Int @default(autoincrement()) @id
+  name String?
+  email String @unique
+  avatar String?
+  messages Message[]
+  chatrooms Chatroom[]
+}
+
+model Message {
+  id Int @default(autoincrement()) @id
+  message String
+  timestamp DateTime
+  sender User @relation(fields: [senderId], references: [id])
+  senderId Int
+}
