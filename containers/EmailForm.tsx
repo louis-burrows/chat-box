@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
+import { PointSpreadLoading } from 'react-loadingg';
 
 const Input: React.FC = ({ }): JSX.Element => {
 
@@ -62,6 +63,7 @@ const Input: React.FC = ({ }): JSX.Element => {
         </button>
 
         <p>{messageFromAxios}</p>
+        <PointSpreadLoading color="#bbadb5" size="large"/>
 
       </div>
     </>
