@@ -10,9 +10,12 @@ CREATE TABLE `Chatroom` (
 -- CreateTable
 CREATE TABLE `User` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `userId` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191),
     `email` VARCHAR(191) NOT NULL,
     `avatar` VARCHAR(191),
+    `active` BOOLEAN NOT NULL DEFAULT false,
+UNIQUE INDEX `User.userId_unique`(`userId`),
 UNIQUE INDEX `User.email_unique`(`email`),
 
     PRIMARY KEY (`id`)

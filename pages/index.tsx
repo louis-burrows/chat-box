@@ -1,6 +1,9 @@
 import React from 'react'
 import Head from 'next/head'
 import { PrismaClient } from '@prisma/client'
+import EmailForm from "../containers/EmailForm"
+
+
 
 const Home: React.FC = ({ users }: any): JSX.Element => {
   console.log('users', users)
@@ -10,9 +13,15 @@ const Home: React.FC = ({ users }: any): JSX.Element => {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-    How many participants?
-    
-  
+
+      Welcome to Chat-App
+
+
+      <div className="content-center">
+        <EmailForm />
+      </div>
+
+
 
     </ div >
   )

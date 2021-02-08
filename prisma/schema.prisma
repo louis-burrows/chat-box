@@ -18,9 +18,11 @@ model Chatroom {
 
 model User {
   id Int @default(autoincrement()) @id
+  userId String @unique
   name String?
   email String @unique
   avatar String?
+  active Boolean @default(false)
   messages Message[]
   chatrooms Chatroom[]
 }
