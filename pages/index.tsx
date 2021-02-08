@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
-import { PrismaClient } from '@prisma/client'
+// import { PrismaClient } from '@prisma/client'
 import EmailForm from "../containers/EmailForm"
 
 
@@ -8,18 +8,19 @@ import EmailForm from "../containers/EmailForm"
 const Home: React.FC = ({ users }: any): JSX.Element => {
   console.log('users', users)
   return (
-    < div >
+    < div className="flex flex-col">
       <Head>
-        <title>Create Next App</title>
+        <title>Chat-App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <h1 className="w-full m-5 text-3xl">
+        Welcome to Chat-App
+      </h1>
 
-      Welcome to Chat-App
 
-
-      <div className="content-center">
+      < div className="" >
         <EmailForm />
-      </div>
+      </div >
 
 
 
@@ -27,19 +28,19 @@ const Home: React.FC = ({ users }: any): JSX.Element => {
   )
 }
 
-// this runs a moment before the component loads. getStaticProps holds up the page from loading until it is resolved - when it receives the "users" props
-export async function getStaticProps() {
-  const prisma = new PrismaClient()
-  const users = await prisma.chatroom.findMany({
-    include: {
-      users: true,
-      messages: true
-    }
-  })
-  return {
-    props: { users }
-  }
-}
+// // this runs a moment before the component loads. getStaticProps holds up the page from loading until it is resolved - when it receives the "users" props
+// export async function getStaticProps() {
+//   const prisma = new PrismaClient()
+//   const users = await prisma.chatroom.findMany({
+//     include: {
+//       users: true,
+//       messages: true
+//     }
+//   })
+//   return {
+//     props: { users }
+//   }
+// }
 
 
 export default Home
