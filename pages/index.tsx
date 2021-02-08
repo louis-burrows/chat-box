@@ -5,17 +5,19 @@ import EmailForm from "../containers/EmailForm"
 
 
 
+
 const Home: React.FC = ({ users }: any): JSX.Element => {
   console.log('users', users)
   return (
-    < div className="flex flex-col">
+    < div className="flex flex-col bg-blue-200 min-h-screen text-center font-mono">
       <Head>
-        <title>Chat-App</title>
+        <title>Chat-Box</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1 className="w-full m-5 text-3xl">
-        Welcome to Chat-App
+      <h1 className="bubble-main bubble-point text-3xl text-black font-mono font-bold">
+        Welcome to Chat-Box
       </h1>
+  
 
 
       < div className="" >

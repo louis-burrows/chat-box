@@ -68,7 +68,7 @@ const Input: React.FC = ({ }): JSX.Element => {
 
         <button
           onClick={() => sendEmail()}
-          className="m-5 rounded border-solid border-2 border-blue-500 p-0.5"
+          className="m-5 rounded border-solid border-2 border-blue-500 p-0.5 bg-white font-bold"
         >
           Submit
         </button>

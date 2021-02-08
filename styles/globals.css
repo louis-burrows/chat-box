@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bubble-main {
+  width: 300px;
+  margin: 50px auto;
+  border-radius: 15px;
+  background: #ffffff;
+  padding: 20px;
+  text-align: center;
+  font-weight: 900;
+  font-family: arial;
+  position: relative;
+}
+
+.bubble-point:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 15px solid transparent;
+  border-right: 15px solid #ffffff;
+  border-top: 15px solid #ffffff;
+  border-bottom: 15px solid transparent;
+  left: -16px;
+  top: 0px;
+}
+
+
