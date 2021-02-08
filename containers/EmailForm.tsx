@@ -7,9 +7,13 @@ const Input: React.FC = ({ }): JSX.Element => {
   const [email, updateFormEmail] = useState<string>("")
   const [inputColor, toggleColor] = useState<string>("bg-red-100")
   const [messageFromAxios, setAxiosMessage] = useState<string>("")
+  const [fetchInProgress, changeProgressState] = useState<boolean>(false)
+  const showLoader = fetchInProgress ? "block" : "hidden"
 
-  const sendEmail = async () => {
-    updateFormEmail("")
+  
+    const sendEmail = async () => {
+    changeProgressState(true);
+    updateFormEmail("");
     try {
       const { data } = await axios('/api/users/create', {
         method: "POST",
@@ -17,14 +21,21 @@ const Input: React.FC = ({ }): JSX.Element => {
           email
         }
       })
-      console.log(data.message)
-      setAxiosMessage(data.message)
+      setTimeout(() => {
+        changeProgressState(false)
+        console.log(data.message)
+        setAxiosMessage(data.message)
+      }, 2000);
     }
     catch (error) {
-      console.log(error.message)
-      setAxiosMessage(error.response.data.message)
+      setTimeout(() => {
+        changeProgressState(false)
+        console.log(error.message)
+        setAxiosMessage(error.response.data.message)
+      }, 2000);
     }
   }
+  
 
   useEffect(() => {
     if (email) {
@@ -63,7 +74,10 @@ const Input: React.FC = ({ }): JSX.Element => {
         </button>
 
         <p>{messageFromAxios}</p>
-        <PointSpreadLoading color="#bbadb5" size="large"/>
+
+        <div className={`${showLoader}`}>
+          <PointSpreadLoading color="#bbadb5" size="large"/>
+        </div>
 
       </div>
     </>
