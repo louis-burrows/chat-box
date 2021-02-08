@@ -10,7 +10,10 @@ const Home: React.FC = ({ users }: any): JSX.Element => {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-  App works
+    How many participants?
+    
+  
+
     </ div >
   )
 }
