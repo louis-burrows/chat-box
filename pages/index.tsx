@@ -5,10 +5,7 @@ import EmailForm from "../containers/EmailForm"
 import { Auth } from '../components/Auth'
 import ChatRoomList from "../containers/ChatRoomList"
 
-
-
-const Home: React.FC = ({ users }: any): JSX.Element => {
-  console.log('users', users)
+const Home: React.FC = (): JSX.Element => {
   return (
     < div className="flex flex-col bg-blue-200 min-h-screen text-center font-mono">
       <Head>
@@ -22,25 +19,11 @@ const Home: React.FC = ({ users }: any): JSX.Element => {
 
       <Auth>
         <div>You are logged in</div>
-        <ChatRoomList/>
+        <ChatRoomList />
       </Auth>
     </ div >
   )
 }
-
-// // this runs a moment before the component loads. getStaticProps holds up the page from loading until it is resolved - when it receives the "users" props
-// export async function getStaticProps() {
-//   const prisma = new PrismaClient()
-//   const users = await prisma.chatroom.findMany({
-//     include: {
-//       users: true,
-//       messages: true
-//     }
-//   })
-//   return {
-//     props: {users}
-//   }
-// }
 
 
 export default Home
