@@ -12,12 +12,18 @@ export const Auth: React.FC = ({ children }): JSX.Element => {
     return ''
   }
 
-  const [uniqueId] = useState(() => localCall())
+  const [uniqueId, setUniqueId] = useState(() => localCall())
+
+  const logOut = (): void => {
+    localStorage.removeItem("uniqueId")
+    setUniqueId('')
+  }
 
   if (uniqueId) {
     return (
       <>
         {children}
+        <button className="fixed top-0 right-0 mr-2 mt-2" onClick={() => logOut()}>Log Out</button>
       </>
     )
   } else {

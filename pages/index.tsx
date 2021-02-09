@@ -3,6 +3,7 @@ import Head from 'next/head'
 // import { PrismaClient } from '@prisma/client'
 import EmailForm from "../containers/EmailForm"
 import { Auth } from '../components/Auth'
+import ChatRoomList from "../containers/ChatRoomList"
 
 
 
@@ -21,6 +22,7 @@ const Home: React.FC = ({ users }: any): JSX.Element => {
 
       <Auth>
         <div>You are logged in</div>
+        <ChatRoomList/>
       </Auth>
     </ div >
   )

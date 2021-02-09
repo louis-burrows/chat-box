@@ -14,11 +14,13 @@ export default async (req: NextApiRequestWithArguments, res: NextApiResponse<Res
   const { body, method } = req
   const { uniqueId } = body
 
+  // if post was not successful, or there was no id, error straight away
   if (method !== 'POST' || !uniqueId) {
     res.statusCode = 400
     res.json({ status: 'fail' })
   }
 
+  // if there is a user id, find it
   try {
     const user = await prisma.user.findFirst({
       where: {
