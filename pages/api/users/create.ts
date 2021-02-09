@@ -26,7 +26,7 @@ const CreateUser: CreateUser = async (req, res) => {
   //if the post failed, or a post was made but it was not an email, then send out a error code of 400, and a response of status and message below
   if (method !== 'POST' || !email) {
     res.statusCode = 400
-    res.json({ status: 'fail', message: "The email verification did not succeed" })
+    res.json({ status: 'fail', message: "Please try again, no email was sent" })
   }
 
   //if an email was posted, then look through the users and find the first instance of where the email matches the one sent
@@ -79,11 +79,11 @@ const CreateUser: CreateUser = async (req, res) => {
     }
     //this is the successful return from the above working
     res.statusCode = 200
-    res.json({ status: 'success', message: "The email verification was successful, please check your email" })
+    res.json({ status: 'success', message: "A verification email has been sent to the provided details" })
   } catch {
     //this is the return from it not working for some other reason
     res.statusCode = 400
-    res.json({ status: 'fail', message: "The email verification did not succeed" })
+    res.json({ status: 'fail', message: "Please try again, no email was sent" })
   }
 }
 
