@@ -2,7 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 // import { PrismaClient } from '@prisma/client'
 import EmailForm from "../containers/EmailForm"
-
+import { Auth } from '../components/Auth'
 
 
 
@@ -14,18 +14,14 @@ const Home: React.FC = ({ users }: any): JSX.Element => {
         <title>Chat-Box</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <h1 className="bubble-main bubble-point text-3xl text-black font-mono font-bold">
         Welcome to Chat-Box
       </h1>
-  
 
-
-      < div className="" >
-        <EmailForm />
-      </div >
-
-
-
+      <Auth>
+        <div>You are logged in</div>
+      </Auth>
     </ div >
   )
 }
@@ -40,7 +36,7 @@ const Home: React.FC = ({ users }: any): JSX.Element => {
 //     }
 //   })
 //   return {
-//     props: { users }
+//     props: {users}
 //   }
 // }
 

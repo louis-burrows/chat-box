@@ -10,14 +10,13 @@ const Input: React.FC = ({ }): JSX.Element => {
   const [fetchInProgress, changeProgressState] = useState<boolean>(false);
 
   const [buttonDisabled, toggleDisabled] = useState(true);
-  const buttonDisabledStyles = buttonDisabled? "cursor-default opacity-30" : "cursor-pointer opacity-100";
-  
+  const buttonDisabledStyles = buttonDisabled ? "cursor-default opacity-30" : "cursor-pointer opacity-100";
+
   const showLoader = fetchInProgress ? "block" : "hidden";
   const validEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  
-    const sendEmail = async () => {
+
+  const sendEmail = async (): Promise<void> => {
     changeProgressState(true);
-    updateFormEmail("");
     try {
       const { data } = await axios('/api/users/create', {
         method: "POST",
@@ -27,6 +26,7 @@ const Input: React.FC = ({ }): JSX.Element => {
       })
       setTimeout(() => {
         changeProgressState(false)
+        updateFormEmail("");
         console.log(data.message)
         setAxiosMessage(data.message)
       }, 2000);
@@ -39,7 +39,7 @@ const Input: React.FC = ({ }): JSX.Element => {
       }, 2000);
     }
   }
-  
+
 
   useEffect(() => {
     if (validEmail.test(email)) {
@@ -81,10 +81,12 @@ const Input: React.FC = ({ }): JSX.Element => {
           Submit
         </button>
 
-        <p>{messageFromAxios}</p>
+        {messageFromAxios && (
+          <p>{messageFromAxios}</p>
+        )}
 
         <div className={`${showLoader}`}>
-          <PointSpreadLoading color="#eeeeee" size="large"/>
+          <PointSpreadLoading color="#eeeeee" size="large" />
         </div>
 
       </div>
