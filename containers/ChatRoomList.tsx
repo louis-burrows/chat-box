@@ -5,18 +5,16 @@ import { PointSpreadLoading } from 'react-loadingg';
 import CreateChatroom from './CreateChatroom';
 
 import { UniqueIdContext } from '../context/uniqueIdContext'
+import { RefreshAppContext } from "../context/RefreshAppContext"
 
 const ChatRoomList: React.FC = ({ }): JSX.Element => {
   // this is calling the unique id from context, where the uniqueId is now being resolved
   const { uniqueId } = useContext(UniqueIdContext)
-
   const [availableChatRooms, addToChatRooms] = useState([])
   const [fetchListInProgress, changeListFetchProgressState] = useState<boolean>(false);
-  const [refresh, setRefresh] = useState(0)
-
-  const refreshChatrooms = () => {
-    setRefresh(refresh + 1)
-  }
+  
+  const { refresh, refreshChatrooms } = useContext(RefreshAppContext)
+ 
 
   useEffect(() => {
     changeListFetchProgressState(true)

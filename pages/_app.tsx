@@ -1,14 +1,17 @@
 import type { AppProps } from 'next/app'
 
 import { UniqueIdProvider } from '../context/uniqueIdContext'
+import { RefreshAppProvider } from '../context/RefreshAppContext'
 
 import '../styles/globals.css'
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   return (
-    <UniqueIdProvider>
-      <Component {...pageProps} />
-    </UniqueIdProvider>
+    <RefreshAppProvider>
+      <UniqueIdProvider>
+        <Component {...pageProps} />
+      </UniqueIdProvider>
+    </RefreshAppProvider>
   )
 }
 

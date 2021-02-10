@@ -7,7 +7,6 @@ type CreateChatRoom = {
   refreshChatrooms: () => void
 }
 
-
 import { UniqueIdContext } from '../context/uniqueIdContext'
 
 const CreateChatRoom: React.FC<CreateChatRoom> = ({ refreshChatrooms }): JSX.Element => {
