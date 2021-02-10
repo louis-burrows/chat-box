@@ -17,6 +17,7 @@ const Home: React.FC = (): JSX.Element => {
         Welcome to Chat-Box
       </h1>
 
+
       <Auth>
         <div>You are logged in</div>
         <ChatRoomList />

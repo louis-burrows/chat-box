@@ -2,18 +2,19 @@ import React, { useState, useEffect } from 'react';
 
 type ChatRoomData = {
   roomName: string
-  roomId: string
+  roomId: number
   participants: number
-  isOwner: boolean;
+  isOwner: boolean
+  deleteChatRoom: (id: number) => void
 }
 
-const ChatRoom: React.FC<ChatRoomData> = ({ roomId, roomName, participants, isOwner }): JSX.Element => {
+const ChatRoom: React.FC<ChatRoomData> = ({ roomId, roomName, participants, isOwner, deleteChatRoom }): JSX.Element => {
 
   const [isTheOwner, toggleOwner] = useState(false)
   const ownerStyles = isTheOwner ? "bg-yellow-200" : "bg-gray-50"
 
   useEffect(() => {
-    if(isOwner) {
+    if (isOwner) {
       toggleOwner(true)
     }
   }, []);
@@ -30,7 +31,7 @@ const ChatRoom: React.FC<ChatRoomData> = ({ roomId, roomName, participants, isOw
         </p>
         <button className="m-1 bg-green-200 rounded-lg p-1">Enter Chat Room {roomId}</button>
         {isOwner && (
-          <button className="m-1 bg-red-200 rounded-lg p-1">Delete Chat Room {roomId}</button>
+          <button className="m-1 bg-red-200 rounded-lg p-1" onClick={() => deleteChatRoom(roomId)}>Delete Chat Room {roomId}</button>
         )}
       </div>
     </>

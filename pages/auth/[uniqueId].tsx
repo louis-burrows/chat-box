@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import { PointSpreadLoading } from 'react-loadingg'
 
+import { UniqueIdContext } from '../../context/uniqueIdContext'
+
 const Auth: React.FC = (): JSX.Element => {
+  const { setLocalStorage, clearLocalStorage } = useContext(UniqueIdContext)
+
   //these add dynamic routes. The uniqueId correlates to the filename
   const { query, push } = useRouter()
   const { uniqueId } = query
@@ -24,13 +28,13 @@ const Auth: React.FC = (): JSX.Element => {
 
       setTimeout(() => {
         //it will also store their uniqueid in local storage.it will redirect the user to the home page, and now their unique id will be stored in local storage at the home page, ready to display optionally rendered components based on this id
-        localStorage.setItem('uniqueId', uniqueId as string)
+        setLocalStorage(uniqueId as string)
         push('/')
         changeProgressState(false)
       }, 2000);
     } catch {
       setTimeout(() => {
-        localStorage.removeItem('uniqueId')
+        clearLocalStorage()
         // this is a next function that redirects the user to whichever page is specified in the push
         push('/')
         changeProgressState(false)
