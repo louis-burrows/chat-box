@@ -4,11 +4,12 @@ type AvatarSource = {
   AvatarSource: string
 }
 
-const Avatar: React.FC = ({ AvatarSource }): JSX.Element => {
+const Avatar: React.FC = ({  }): JSX.Element => {
 
   return (
     <>
-    <img src={AvatarSource} alt=""/>
+    <p>picture of avatar</p>
+    <img src="" alt=""/>
    
     </>
   )
