@@ -37,11 +37,11 @@ const MessageRoom: React.FC = (): JSX.Element => {
       message: "how do you do today"
     },
     {
-      from: "them",
+      from: "Naomi",
       message: "fine, thank you"
     },
     {
-      from: "them",
+      from: "Alex",
       message: "not too bad, aye"
     },
     {
@@ -49,7 +49,7 @@ const MessageRoom: React.FC = (): JSX.Element => {
       message: "Ah, grand"
     },
     {
-      from: "them",
+      from: "Joe",
       message: "Let's make chickpea burgers!"
     }
   ]
@@ -87,19 +87,19 @@ const MessageRoom: React.FC = (): JSX.Element => {
         )}
       </div>
 
-      <div className="flex flex-col bg-white p-4 mt-10 w-9/12 rounded">
+      <div className="flex flex-col bg-white p-4 mt-10 w-9/12 rounded m-auto">
         {dummyMessages.map((message, index) => {
            if(message.from == "you") {
             return (
             <div key={index} className="flex flex-row mb-3">
-            <div className="w-full bg-yellow-100">{message.message}</div>
-            <div className="right-10">From you</div>
+            <div className="w-full bg-yellow-100 ">{message.message}</div>
+            <div className="ml-2 bg-yellow-200">From you</div>
             </div>
             )
           } else {
             return (
             <div key={index} className="flex flex-row mb-3">
-            <div className="left-10">From {message.from}</div>
+            <div className="bg-gray-100 mr-2">From {message.from}</div>
             <div className="w-full bg-blue-100">{message.message}</div>
             </div>
             )
