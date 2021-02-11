@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link'
+
 
 type ChatRoomData = {
   roomName: string
@@ -29,7 +31,9 @@ const ChatRoom: React.FC<ChatRoomData> = ({ roomId, roomName, participants, isOw
             <span className="text-red-500"> {participants} </span>
           participants</span>
         </p>
-        <button className="m-1 bg-green-200 rounded-lg p-1">Enter Chat Room {roomId}</button>
+        {/* <Link href="./messagesroom.tsx">
+          <a className="m-1 bg-green-200 rounded-lg p-1">Enter Chat Room {roomId}</a>>
+        </Link> */}
         {isOwner && (
           <button className="m-1 bg-red-200 rounded-lg p-1" onClick={() => deleteChatRoom(roomId)}>Delete Chat Room {roomId}</button>
         )}

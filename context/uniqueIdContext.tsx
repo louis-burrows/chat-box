@@ -5,6 +5,7 @@ import axios from 'axios'
 export const UniqueIdContext = createContext({
   uniqueId: '',
   user: {
+    id: 0,
     name: '',
     email: '',
     avatar: ''
@@ -31,10 +32,12 @@ export const UniqueIdProvider: React.FC = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [refetch, setRefetch] = useState(0)
   const [user, setUser] = useState<{
+    id: number;
     name: string;
     email: string;
     avatar: string;
   }>({
+    id: 0,
     name: '',
     email: '',
     avatar: ''
@@ -59,6 +62,7 @@ export const UniqueIdProvider: React.FC = ({ children }) => {
   const logOut = () => {
     setIsLoggedIn(false)
     setUser({
+      id: 0,
       name: '',
       email: '',
       avatar: ''
