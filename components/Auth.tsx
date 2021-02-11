@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
 import EmailForm from '../containers/EmailForm'
+import Link from 'next/link'
 
 import { UniqueIdContext } from '../context/UniqueIdContext'
 
@@ -17,7 +18,13 @@ export const Auth: React.FC = ({ children }): JSX.Element => {
     return (
       <>
         {children}
-        <button className="fixed top-0 right-0 mr-2 mt-2" onClick={() => logOut()}>Log Out</button>
+
+        <button className="fixed top-0 right-0 mr-2 mt-2 bg-indigo-200 border-2 rounded p-1 shadow text-green-900" onClick={() => logOut()}>Log Out</button>
+
+        <Link href="./editprofile">
+        <button className="fixed top-0 right-20 mr-2 mt-2 bg-indigo-200 border-2 rounded p-1 shadow text-green-900">Edit Profile</button>
+        </Link>
+        
       </>
     )
   } else {

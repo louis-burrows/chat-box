@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 //by default, the context will have no value, as defined here
 export const LoadingStateContext = createContext({
   isLoading: false,
-  toggleLoading: () => {}
+  toggleLoading: (val: boolean) => {}
 })
 
 export const LoadingStateProvider: React.FC = ({ children }) => {
@@ -11,6 +11,7 @@ export const LoadingStateProvider: React.FC = ({ children }) => {
   const [isLoading, toggleLoadingState] = useState<boolean>(false)
 
   const toggleLoading = () => {
+    console.log('toggleLoading', isLoading)
     toggleLoadingState(!isLoading)
   }
  
@@ -18,7 +19,7 @@ export const LoadingStateProvider: React.FC = ({ children }) => {
     <LoadingStateContext.Provider
     value={{
       isLoading,
-      toggleLoading
+      toggleLoading: toggleLoadingState
     }}>
       {children}
     </LoadingStateContext.Provider>

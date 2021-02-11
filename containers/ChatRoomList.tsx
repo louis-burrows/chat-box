@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import axios from 'axios'
 import ChatRoom from "../components/ChatRoom"
 import { PointSpreadLoading } from 'react-loadingg';
@@ -6,46 +6,47 @@ import CreateChatroom from './CreateChatroom';
 
 import { UniqueIdContext } from '../context/UniqueIdContext'
 import { RefreshAppContext } from "../context/RefreshAppContext"
-import { LoadingStateContext } from "../context/loadingStateContext"
+import { LoadingStateContext } from "../context/LoadingStateContext"
 
 const ChatRoomList: React.FC = ({ }): JSX.Element => {
   // this is calling the unique id from context, where the uniqueId is now being resolved
   const { uniqueId } = useContext(UniqueIdContext)
   const [availableChatRooms, addToChatRooms] = useState([])
-  
+
   const { refresh, refreshChatrooms } = useContext(RefreshAppContext)
   const { isLoading, toggleLoading } = useContext(LoadingStateContext)
-  
 
+  const getChatRoomList = async (): Promise<any> => {
+    toggleLoading(true)
+    try {
+      const { data } = await axios('/api/chatrooms/all', {
+        method: "GET",
+        params: {
+          uniqueId
+        }
+      })
+      setTimeout(() => {
+        toggleLoading(false)
+        addToChatRooms(data.chatrooms)
+      }, 1500);
+    }
+    catch (error) {
+      setTimeout(() => {
+        toggleLoading(false)
+        console.log(error)
+      }, 1000);
+    }
+  }
+
+  //
 
   useEffect(() => {
-    toggleLoading()
-    const getChatRoomList = async (): Promise<any> => {
-      try {
-        const { data } = await axios('/api/chatrooms/all', {
-          method: "GET",
-          params: {
-            uniqueId
-          }
-        })
-        setTimeout(() => {
-          toggleLoading()
-          addToChatRooms(data.chatrooms)
-        }, 2000);
-      }
-      catch (error) {
-        setTimeout(() => {
-          toggleLoading()
-          console.log(error)
-        }, 1000);
-      }
-    }
     getChatRoomList()
   }, [refresh]);
 
 
   const deleteChatRoom = async (id: number): Promise<any> => {
-    toggleLoading()
+    toggleLoading(true)
     try {
       await axios('/api/chatrooms/delete', {
         method: "DELETE",
@@ -55,10 +56,10 @@ const ChatRoomList: React.FC = ({ }): JSX.Element => {
         }
       })
       refreshChatrooms()
-      toggleLoading()
+      toggleLoading(false)
     }
     catch (error) {
-      toggleLoading()
+      toggleLoading(false)
       console.log(error)
     }
   }
