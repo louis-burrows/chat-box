@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import axios from 'axios'
 import { PointSpreadLoading } from 'react-loadingg'
 
-import { UniqueIdContext } from '../../context/uniqueIdContext'
+import { UniqueIdContext } from '../../context/UniqueIdContext'
 
 const Auth: React.FC = (): JSX.Element => {
   const { setLocalStorage, clearLocalStorage } = useContext(UniqueIdContext)

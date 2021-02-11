@@ -3,13 +3,11 @@ import EmailForEachUser from '../components/EmailForEachUser';
 import { PointSpreadLoading } from 'react-loadingg';
 import axios from 'axios'
 
-type CreateChatRoom = {
-  refreshChatrooms: () => void
-}
 
-import { UniqueIdContext } from '../context/uniqueIdContext'
 
-const CreateChatRoom: React.FC<CreateChatRoom> = ({ refreshChatrooms }): JSX.Element => {
+import { UniqueIdContext } from '../context/UniqueIdContext'
+
+const CreateChatRoom: React.FC = (): JSX.Element => {
   const { uniqueId } = useContext(UniqueIdContext)
   const [createdRoomName, addName] = useState("")
   const [createdParticipantNumber, addNumber] = useState(0)

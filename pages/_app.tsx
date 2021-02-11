@@ -1,17 +1,21 @@
 import type { AppProps } from 'next/app'
 
-import { UniqueIdProvider } from '../context/uniqueIdContext'
+import { UniqueIdProvider } from '../context/UniqueIdContext'
 import { RefreshAppProvider } from '../context/RefreshAppContext'
+import { LoadingStateProvider } from '../context/loadingStateContext'
+
 
 import '../styles/globals.css'
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   return (
+    <LoadingStateProvider>
     <RefreshAppProvider>
       <UniqueIdProvider>
         <Component {...pageProps} />
       </UniqueIdProvider>
     </RefreshAppProvider>
+    </LoadingStateProvider>
   )
 }
 

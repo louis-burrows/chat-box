@@ -4,20 +4,22 @@ import ChatRoom from "../components/ChatRoom"
 import { PointSpreadLoading } from 'react-loadingg';
 import CreateChatroom from './CreateChatroom';
 
-import { UniqueIdContext } from '../context/uniqueIdContext'
+import { UniqueIdContext } from '../context/UniqueIdContext'
 import { RefreshAppContext } from "../context/RefreshAppContext"
+import { LoadingStateContext } from "../context/loadingStateContext"
 
 const ChatRoomList: React.FC = ({ }): JSX.Element => {
   // this is calling the unique id from context, where the uniqueId is now being resolved
   const { uniqueId } = useContext(UniqueIdContext)
   const [availableChatRooms, addToChatRooms] = useState([])
-  const [fetchListInProgress, changeListFetchProgressState] = useState<boolean>(false);
   
   const { refresh, refreshChatrooms } = useContext(RefreshAppContext)
- 
+  const { isLoading, toggleLoading } = useContext(LoadingStateContext)
+  
+
 
   useEffect(() => {
-    changeListFetchProgressState(true)
+    toggleLoading()
     const getChatRoomList = async (): Promise<any> => {
       try {
         const { data } = await axios('/api/chatrooms/all', {
@@ -27,13 +29,13 @@ const ChatRoomList: React.FC = ({ }): JSX.Element => {
           }
         })
         setTimeout(() => {
-          changeListFetchProgressState(false)
+          toggleLoading()
           addToChatRooms(data.chatrooms)
         }, 2000);
       }
       catch (error) {
         setTimeout(() => {
-          changeListFetchProgressState(false)
+          toggleLoading()
           console.log(error)
         }, 1000);
       }
@@ -43,7 +45,7 @@ const ChatRoomList: React.FC = ({ }): JSX.Element => {
 
 
   const deleteChatRoom = async (id: number): Promise<any> => {
-    changeListFetchProgressState(true)
+    toggleLoading()
     try {
       await axios('/api/chatrooms/delete', {
         method: "DELETE",
@@ -53,10 +55,10 @@ const ChatRoomList: React.FC = ({ }): JSX.Element => {
         }
       })
       refreshChatrooms()
-      changeListFetchProgressState(false)
+      toggleLoading()
     }
     catch (error) {
-      changeListFetchProgressState(false)
+      toggleLoading()
       console.log(error)
     }
   }
@@ -65,10 +67,10 @@ const ChatRoomList: React.FC = ({ }): JSX.Element => {
   return (
     <>
 
-      <CreateChatroom refreshChatrooms={refreshChatrooms} />
+      <CreateChatroom />
 
       {
-        fetchListInProgress && (
+        isLoading && (
           <PointSpreadLoading color="#ffffff" size="large" />
         )
       }

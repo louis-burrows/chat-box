@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import EmailForm from '../containers/EmailForm'
 
-import { UniqueIdContext } from '../context/uniqueIdContext'
+import { UniqueIdContext } from '../context/UniqueIdContext'
 
 export const Auth: React.FC = ({ children }): JSX.Element => {
 
