@@ -28,17 +28,16 @@ const MessageRoom: React.FC = (): JSX.Element => {
   useEffect(() => {
     const interval = setTimeout(() => {
       setRefresh(refresh + 1)
-    }, 15000)
+    }, 8000)
   }, [refresh])
-
-  console.log('refresh', refresh)
 
   useEffect(() => {
     const getDataForThisChatRoom = async (): Promise<any> => {
       axios.get("/api/chatrooms/single", {
         params: {
           uniqueId,
-          id
+          id,
+          cache: new Date().toISOString()
         }
       })
         .then(response => {
@@ -54,14 +53,31 @@ const MessageRoom: React.FC = (): JSX.Element => {
     if (id) {
       getDataForThisChatRoom()
     }
-  }, [id]);
-
-  console.log('chatroomData', chatroomData)
+  }, [refresh, id]);
 
   // this is a safe way of checking whether an object has a specific property
   if (!chatroomData.hasOwnProperty('name')) {
     return <div />
   }
+
+  const sendMessage = async (): Promise<any> => {
+    axios.post('/api/messages/create', {
+      //params is for get requests, data is for post requests. but because we are using .post, instead of method: "POST", data is already assumed
+      uniqueId,
+      chatroomId: id,
+      message: userMessage
+    })
+      .then(response => {
+        console.log("return from chat room info call", response)
+        setMessage('')
+        setRefresh(refresh + 1)
+      })
+      .catch(error => {
+        console.log("error from chat room info call", error);
+      })
+  }
+
+
 
   return (
 
@@ -90,7 +106,7 @@ const MessageRoom: React.FC = (): JSX.Element => {
       <div className="flex flex-row mt-10 justify-center">
         <label className="mr-4" htmlFor="messageInput">Type away, {user.name}</label>
         <input className="rounded border-blue-300 border-2 border-solid" type="text" name="messageInput" id="messageInput" value={userMessage} onChange={(e) => setMessage(e.target.value)} />
-        <button className="ml-4 bg-gray-100 rounded p-0.5 border-blue-300 border-2 border-solid">Submit</button>
+        <button className="ml-4 bg-gray-100 rounded p-0.5 border-blue-300 border-2 border-solid" onClick={() => sendMessage()}>Submit</button>
       </div>
 
       {/* All the messages submitted by the users, with user-dependent styles */}
@@ -125,8 +141,8 @@ const MessageRoom: React.FC = (): JSX.Element => {
 
     </div>
   )
-}
 
+}
 
 
 export default MessageRoom;

@@ -1,11 +1,18 @@
 import React, { useContext } from 'react'
 import Head from 'next/head'
+import axios from 'axios'
 
 import { UniqueIdContext } from '../context/UniqueIdContext'
 
 import EmailForm from "../containers/EmailForm"
 import { Auth } from '../components/Auth'
 import ChatRoomList from "../containers/ChatRoomList"
+
+axios.defaults.headers = {
+  'Cache-Control': 'no-cache',
+  'Pragma': 'no-cache',
+  'Expires': '0'
+}
 
 const Home: React.FC = (): JSX.Element => {
   const { isLoggedIn, user } = useContext(UniqueIdContext)
