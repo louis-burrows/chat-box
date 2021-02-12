@@ -47,15 +47,20 @@ const CreateChatRoom: React.FC = (): JSX.Element => {
   return (
     <>
 
-      <div className="flex flex-column max-w-4xl">
+      <div className="flex flex-col w-full">
 
-        <button className="rounded border-solid border-2 border-blue-500 p-0.5 bg-white font-bold m-3" onClick={() => generateEmailsToSend()}>Create a new chat room</button>
+        <div className="flex flex-row w-full justify-center">
+        <input className="rounded" type="text" placeholder=" Name your chatroom" onChange={e => addName(e.target.value)} />
 
-        <input className="m-3 rounded" type="text" placeholder="Name your chatroom" onChange={e => addName(e.target.value)} />
+        <button className="rounded border-solid border-2 border-blue-400 pr-1 pl-1 bg-white font-bold ml-2" onClick={() => generateEmailsToSend()}>Create room</button>
+        </div>
 
-        <label className="m-2" htmlFor="participants">How many participants?</label>
+        <div className="flex flex-row justify-center mt-6">
+        <label className="mr-4" htmlFor="participants">How many participants?</label>
 
-        <input className="m-3 rounded w-10" type="number" min="0" max="5" id="participants" onChange={e => addNumber(e.target.valueAsNumber)} value={createdParticipantNumber} />
+        <input className="rounded w-6" type="number" min="0" max="5" id="participants" onChange={e => addNumber(e.target.valueAsNumber)} value={createdParticipantNumber} />
+        </div>
+
 
       </div>
 

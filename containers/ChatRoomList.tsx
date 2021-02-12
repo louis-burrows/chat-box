@@ -74,20 +74,23 @@ const ChatRoomList: React.FC = ({ }): JSX.Element => {
         )
       }
 
+      {/* Only if there are chatrooms, this will be displayed */}
       {
         availableChatRooms.length > 0 ? (
-          <div>
-            <div className="flex flex-row">
-              <p>Created by you =</p>
-              <div className="rounded border-white w-10 h-6 border-2 m-2 bg-yellow-200"></div>
+          <div className="flex text-sm flex-col p-1 bg-white bg-opacity-40 rounded-lg border-white border-2 mt-6 mr-auto ml-auto">
+            <h2 className="mb-2 text-center">Your currently available chatrooms...</h2>
+            <div className="flex flex-row justify-center">
+              <div className="rounded border-white w-6 h-6 border-2 mr-2 bg-yellow-200"></div>
+              <p>= created by you</p>
             </div>
-            <h2 className="m-2">Your currently available chatrooms...</h2>
           </div>
         ) : (
             null
           )
       }
 
+      {/* this is the list of chatrooms, mapped out */}
+      <div className="m-auto mt-6">
       {
         availableChatRooms.map(((chatroom: any, index: number) => {
           const chat = {
@@ -101,6 +104,7 @@ const ChatRoomList: React.FC = ({ }): JSX.Element => {
           return <ChatRoom {...chat} key={index} />
         }))
       }
+      </div>
     </>
   )
 }

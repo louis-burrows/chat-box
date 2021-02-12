@@ -27,4 +27,7 @@
   top: 0px;
 }
 
+.space-between {
+  justify-content: space-between;
+}
 

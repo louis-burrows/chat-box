@@ -7,9 +7,7 @@ import Link from 'next/link'
 import { UniqueIdContext } from '../../context/UniqueIdContext'
 import axios from 'axios'
 
-
 import { Auth } from '../../components/Auth'
-import { sendError } from 'next/dist/next-server/server/api-utils'
 
 
 const MessageRoom: React.FC = (): JSX.Element => {

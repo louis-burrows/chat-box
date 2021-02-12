@@ -23,20 +23,30 @@ const ChatRoom: React.FC<ChatRoomData> = ({ roomId, roomName, participants, isOw
 
   return (
     <>
-      <div className="flex flex-row m-5 ">
-        <p className={`${ownerStyles} border-white border-2 text-yellow-800 m-2 rounded-lg p-1`}>
-          <span className="text-green-700">Room: </span>
-          {roomName}...
-          <span className="text-green-700"> with
-            <span className="text-red-500"> {participants} </span>
-          participants</span>
-        </p>
-        <Link href={`/messagesroom/${roomId}`} >
-          <a className="m-1 bg-green-200 rounded-lg p-1">Enter Chat Room {roomId}</a>
-        </Link>
-        {isOwner && (
-          <button className="m-1 bg-red-200 rounded-lg p-1" onClick={() => deleteChatRoom(roomId)}>Delete Chat Room {roomId}</button>
-        )}
+      <div className="flex flex-row m-4 max-w-3xl justify-between">
+        <div className="text-sm">
+          <p className={`${ownerStyles} border-white border-2 m-2 rounded-lg p-1`}>Room: {}
+            
+            <span className="text-blue-600 font-black"> 
+              {roomName}... {}
+            </span>
+            
+              with
+            <span className="text-blue-600 font-black">           {participants} {}  
+            </span>
+
+              participants
+          </p>
+        </div>
+
+        <div className="flex flex-row text-xs font-black">
+          {isOwner && (
+            <button className="border-white border-2 bg-yellow-800 bg-opacity-30 rounded-lg m-2 p-1" onClick={() => deleteChatRoom(roomId)}>Delete Chat Room</button>
+          )}
+          <Link href={`/messagesroom/${roomId}`} >
+            <a className="border-white border-2 p-1 m-2 bg-pink-300 bg-opacity-80 rounded-lg text-center ">Enter Chat Room</a>
+          </Link>
+        </div>
       </div>
     </>
   )
