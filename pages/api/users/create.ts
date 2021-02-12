@@ -43,7 +43,9 @@ const CreateUser: CreateUser = async (req, res) => {
       await prisma.user.create({
         data: {
           email,
-          userId: newUserId
+          userId: newUserId,
+          // name: "Qui?",
+          // avatar: "./avatars/noAvatar.png"
         }
       })
 

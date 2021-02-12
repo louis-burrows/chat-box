@@ -34,34 +34,31 @@ const MessageRoom: React.FC = (): JSX.Element => {
   const dummyMessages = [
     {
       from: "you",
-      message: "how do you do today"
+      message: "how do you do today",
+      date: "2nd Feb 18:04"
     },
     {
       from: "Naomi",
-      message: "fine, thank you"
+      message: "fine, thank you",
+      date: "2nd Feb 18:04"
     },
     {
       from: "Alex",
-      message: "not too bad, aye"
+      message: "not too bad, aye",
+      date: "2nd Feb 18:04"
     },
     {
       from: "you",
-      message: "Ah, grand"
+      message: "Ah, grand",
+      date: "2nd Feb 18:04"
     },
     {
       from: "Joe",
-      message: "Let's make chickpea burgers!"
+      message: "Let's make chickpea burgers!",
+      date: "2nd Feb 18:04"
     }
   ]
 
-  const [whoSent, toggleWho] = useState("")
-
-  const you = "bg-green-100"
-  const them = "bg-yellow-100"
-
-  const chatRoomUserGenerator = () => {
-    
-  }
 
   const { uniqueId, refetchUser, user } = useContext(UniqueIdContext)
 
@@ -79,7 +76,7 @@ const MessageRoom: React.FC = (): JSX.Element => {
 
       <div className="flex justify-center">
         {chatroomUsers.map((user, index) => (
-          <div className="flex flex-col mr-2 ml-8">
+          <div key={index} className="flex flex-col mr-2 ml-8">
             <p>{user.userName}</p>
             <img className="w-20 h-20 object-contain" src={user.avatar} alt="picture of the user"/>
           </div>
@@ -92,15 +89,15 @@ const MessageRoom: React.FC = (): JSX.Element => {
            if(message.from == "you") {
             return (
             <div key={index} className="flex flex-row mb-3">
-            <div className="w-full bg-yellow-100 ">{message.message}</div>
-            <div className="ml-2 bg-yellow-200">From you</div>
+            <div className="w-full bg-green-100 p-0.5">{message.message}</div>
+            <div className="ml-2 bg-green-200 text-xs p-0.5">From <span className="text-blue-500"> you </span>- {message.date}</div>
             </div>
             )
           } else {
             return (
             <div key={index} className="flex flex-row mb-3">
-            <div className="bg-gray-100 mr-2">From {message.from}</div>
-            <div className="w-full bg-blue-100">{message.message}</div>
+            <div className="bg-gray-100 mr-2 text-xs p-0.5">From <span className="text-red-500">{message.from}</span> - {message.date}</div>
+            <div className="w-full bg-blue-100 p-0.5">{message.message}</div>
             </div>
             )
           }

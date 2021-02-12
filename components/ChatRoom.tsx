@@ -31,9 +31,9 @@ const ChatRoom: React.FC<ChatRoomData> = ({ roomId, roomName, participants, isOw
             <span className="text-red-500"> {participants} </span>
           participants</span>
         </p>
-        {/* <Link href="./messagesroom.tsx">
-          <a className="m-1 bg-green-200 rounded-lg p-1">Enter Chat Room {roomId}</a>>
-        </Link> */}
+        <Link href="./messagesroom">
+          <a className="m-1 bg-green-200 rounded-lg p-1">Enter Chat Room {roomId}</a>
+        </Link>
         {isOwner && (
           <button className="m-1 bg-red-200 rounded-lg p-1" onClick={() => deleteChatRoom(roomId)}>Delete Chat Room {roomId}</button>
         )}
