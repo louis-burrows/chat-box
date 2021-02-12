@@ -32,11 +32,9 @@ const EditProfiles: React.FC = (): JSX.Element => {
           avatar: avatar
         }
       })
-      console.log(data.message)
       refetchUser()
     }
     catch (error) {
-      console.log(error.message)
     }
   }
 

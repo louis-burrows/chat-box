@@ -31,7 +31,7 @@ const ChatRoom: React.FC<ChatRoomData> = ({ roomId, roomName, participants, isOw
             <span className="text-red-500"> {participants} </span>
           participants</span>
         </p>
-        <Link href="./messagesroom">
+        <Link href={`/messagesroom/${roomId}`} >
           <a className="m-1 bg-green-200 rounded-lg p-1">Enter Chat Room {roomId}</a>
         </Link>
         {isOwner && (

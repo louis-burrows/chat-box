@@ -10,6 +10,7 @@ export const UniqueIdContext = createContext({
     email: '',
     avatar: ''
   },
+  init: false,
   isLoggedIn: false,
   //the default for the functions below, these are doing nothing. {} is the same as void, but for regular JS
   setLocalStorage: (string: string) => { },
@@ -28,6 +29,7 @@ export const UniqueIdProvider: React.FC = ({ children }) => {
   }
 
   //these are the methods and variables that will be available to the children
+  const [init, setInit] = useState(false)
   const [uniqueId, setUniqueId] = useState(() => localCall())
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [refetch, setRefetch] = useState(0)
@@ -42,8 +44,6 @@ export const UniqueIdProvider: React.FC = ({ children }) => {
     email: '',
     avatar: ''
   })
-
-  console.log('user', user)
 
   const refetchUser = () => {
     setRefetch(refetch + 1)
@@ -82,6 +82,7 @@ export const UniqueIdProvider: React.FC = ({ children }) => {
         })
 
         setIsLoggedIn(true)
+        setInit(true)
         setUser(data.user)
       } catch {
         // error
@@ -90,6 +91,8 @@ export const UniqueIdProvider: React.FC = ({ children }) => {
     }
     if (uniqueId) {
       getUserInfo()
+    } else {
+      setInit(true)
     }
   }, [uniqueId, refetch])
 
@@ -98,6 +101,7 @@ export const UniqueIdProvider: React.FC = ({ children }) => {
     <UniqueIdContext.Provider
       value={{
         uniqueId,
+        init,
         isLoggedIn,
         user,
         setLocalStorage,

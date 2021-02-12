@@ -27,14 +27,12 @@ const Input: React.FC = ({ }): JSX.Element => {
       setTimeout(() => {
         changeProgressState(false)
         updateFormEmail("");
-        console.log(data.message)
         setAxiosMessage(data.message)
       }, 2000);
     }
     catch (error) {
       setTimeout(() => {
         changeProgressState(false)
-        console.log(error.message)
         setAxiosMessage(error.response.data.message)
       }, 2000);
     }

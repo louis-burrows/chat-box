@@ -33,7 +33,6 @@ const ChatRoomList: React.FC = ({ }): JSX.Element => {
     catch (error) {
       setTimeout(() => {
         toggleLoading(false)
-        console.log(error)
       }, 1000);
     }
   }
@@ -60,7 +59,6 @@ const ChatRoomList: React.FC = ({ }): JSX.Element => {
     }
     catch (error) {
       toggleLoading(false)
-      console.log(error)
     }
   }
 

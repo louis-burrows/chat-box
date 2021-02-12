@@ -21,11 +21,6 @@ const CreateChatRoom: React.FC = (): JSX.Element => {
     setEmails(newEmails)
   }
 
-  console.log('emails', emails)
-  useEffect(() => {
-    console.log(postInProgress)
-  }, [postInProgress]);
-
   const generateEmailsToSend = async (): Promise<void> => {
     postProgressState(true)
 
@@ -40,14 +35,11 @@ const CreateChatRoom: React.FC = (): JSX.Element => {
       })
       setTimeout(() => {
         postProgressState(false)
-
-        console.log(data.message)
       }, 1000);
     }
     catch (error) {
       setTimeout(() => {
         postProgressState(false)
-        console.log(error.message)
       }, 1000);
     }
   }

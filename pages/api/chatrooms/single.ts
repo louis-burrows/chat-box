@@ -35,6 +35,9 @@ export default async (req: NextApiRequestWithArguments, res: NextApiResponse<Res
         users: true,
         owner: true,
         messages: {
+          orderBy: {
+            timestamp: 'desc'
+          },
           include: {
             sender: true
           }

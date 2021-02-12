@@ -43,9 +43,6 @@ export default async (req: NextApiRequestWithArguments, res: NextApiResponse<Res
     res.statusCode = 200
     res.json({ status: 'success' })
   } catch (error) {
-    console.log('error', error)
-    console.log('id', id)
-    console.log('uniqueId', uniqueId)
     res.statusCode = 400
     res.json({ status: 'fail' })
   }

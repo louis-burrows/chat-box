@@ -44,8 +44,8 @@ const CreateUser: CreateUser = async (req, res) => {
         data: {
           email,
           userId: newUserId,
-          // name: "Qui?",
-          // avatar: "./avatars/noAvatar.png"
+          name: "Qui?",
+          avatar: "/avatars/noAvatar.png"
         }
       })
 
