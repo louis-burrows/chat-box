@@ -86,21 +86,21 @@ const MessageRoom: React.FC = (): JSX.Element => {
 
       <div className="flex flex-col bg-white p-4 mt-10 w-9/12 rounded m-auto">
         {dummyMessages.map((message, index) => {
-           if(message.from == "you") {
-            return (
+          return message.from == "you" ? (
             <div key={index} className="flex flex-row mb-3">
-            <div className="w-full bg-green-100 p-0.5">{message.message}</div>
-            <div className="ml-2 bg-green-200 text-xs p-0.5">From <span className="text-blue-500"> you </span>- {message.date}</div>
-            </div>
-            )
-          } else {
-            return (
+
+              <div className="w-full bg-green-100 p-0.5">{message.message}</div>
+              <div className="ml-2 bg-green-200 text-xs p-0.5">From <span className="text-blue-500"> you </span>- {message.date}</div>
+
+            </div>   
+          ) : (   
             <div key={index} className="flex flex-row mb-3">
-            <div className="bg-gray-100 mr-2 text-xs p-0.5">From <span className="text-red-500">{message.from}</span> - {message.date}</div>
-            <div className="w-full bg-blue-100 p-0.5">{message.message}</div>
+
+              <div className="bg-gray-100 mr-2 text-xs p-0.5">From <span className="text-red-500">{message.from}</span> - {message.date}</div>
+              <div className="w-full bg-blue-100 p-0.5">{message.message}</div>
+              
             </div>
-            )
-          }
+          )
         })}
 
 
