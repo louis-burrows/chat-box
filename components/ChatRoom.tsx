@@ -23,9 +23,9 @@ const ChatRoom: React.FC<ChatRoomData> = ({ roomId, roomName, participants, isOw
 
   return (
     <>
-      <div className="flex flex-row m-4 max-w-3xl justify-between">
+      <div className="flex flex-row m-4 max-w-3xl gap-x-6 justify-between break-words">
         <div className="text-sm">
-          <p className={`${ownerStyles} border-white border-2 m-2 rounded-lg p-1`}>Room: {}
+          <p className={`${ownerStyles} border-white border-2 m-1 rounded-lg p-1 w-32 sm:w-60 lg:w-10/12`}>Room: {}
             
             <span className="text-blue-600 font-black"> 
               {roomName}... {}
@@ -39,12 +39,12 @@ const ChatRoom: React.FC<ChatRoomData> = ({ roomId, roomName, participants, isOw
           </p>
         </div>
 
-        <div className="flex flex-row text-xs">
+        <div className="flex flex-row text-xs font-black">
           {isOwner && (
-            <button className="border-white border-2 bg-yellow-800 bg-opacity-30 rounded-lg m-2 p-1" onClick={() => deleteChatRoom(roomId)}>Delete Chat Room</button>
+            <button className="border-white border-2 bg-yellow-800 bg-opacity-25 rounded-lg mt-1 mb-1 p-1 font-black break-normal w-14 sm:w-20" onClick={() => deleteChatRoom(roomId)}>Delete Chat Room</button>
           )}
           <Link href={`/messagesroom/${roomId}`} >
-            <a className="border-white border-2 p-1 bg-pink-300 bg-opacity-80 rounded-lg text-center flex m-2"><span className="m-auto">Enter Chat Room</span></a>
+            <a className="border-white border-2 p-1 bg-pink-300 bg-opacity-80 rounded-lg text-center flex m-1 w-14 sm:w-20"><span className="m-auto">Enter Chat Room</span></a>
           </Link>
         </div>
       </div>
