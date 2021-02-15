@@ -58,7 +58,7 @@ const CreateChatRoom: React.FC = (): JSX.Element => {
         <div className="flex flex-row justify-center mt-6">
         <label className="mr-4" htmlFor="participants">How many participants?</label>
 
-        <input className="rounded w-6" type="number" min="0" max="5" id="participants" onChange={e => addNumber(e.target.valueAsNumber)} value={createdParticipantNumber} />
+        <input className="rounded w-8" type="number" min="0" max="5" id="participants" onChange={e => addNumber(e.target.valueAsNumber)} value={createdParticipantNumber} />
         </div>
 
 
